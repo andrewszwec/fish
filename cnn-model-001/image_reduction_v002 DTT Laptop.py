@@ -12,6 +12,7 @@ import sys
 #dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/DOL/"
 # DTT UBUNTU
 dir = r"/home/andrew/Documents/kaggle/fish/cnn-model-001/data/ALB/"
+dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/YFT/"
 
 # this step should really be batched
 def load_images_from_folder(folder):
@@ -46,6 +47,14 @@ for i in range(0,len(images)):
     #images_resized.append(im)
     # saving to disk
     imsave(dir+'resized/'+new_file_names[i], im)
+
+
+quit()
+
+
+
+
+
 
 # now taken care of above
 # save resized files to disk

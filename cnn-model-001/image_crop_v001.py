@@ -1,51 +1,37 @@
 ## Load the Image Files and reduce size to 32x32 pixels
 
-from scipy.misc import imread, imresize, imsave
+#from scipy.misc import imread, imresize, imsave
 import numpy as np
-#import matplotlib.pyplot as plt
 import os
 import sys
+from PIL import Image
+
 
 # Automated version
 # dir = sys.argv
-dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/YFT/"
+dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/WIP/"
+suffix = r"YFT/"
 
 # this step should really be batched
-def load_images_from_folder(folder):
-    images = []
+def get_file_names(folder):
     filenames = []
     for filename in os.listdir(folder):
         if filename.find('.jpg') != -1:  # if it contains .jpg
-            img = imread(os.path.join(folder,filename))
-            if img is not None:
-                images.append(img)
-                filenames.append(filename)
-    return images, filenames
+            filenames.append(filename)
+    return filenames
+
+filenames = get_file_names(dir+suffix)
 
 
-images, filenames = load_images_from_folder(dir)
+
+for fn in filenames:
+    # Load the original image:
+    img = Image.open(dir+suffix+fn)
+    img2 = img.crop((0, 0, 100, 100))  # now crop it to the correct dims
+    img2.save("/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/cropped/"+fn)
 
 
-# fix the file names to add "resized"
-new_file_names = []
-for file in filenames:
-    new_file_names.append( file.replace(".jpg", "_resized.jpg") )
 
-# Make folder for saving
-if not os.path.exists(dir+'resized/'):
-    os.makedirs(dir+'resized/')
-
-# used when putting into an array
-#images_resized=[]
-for i in range(0,len(images)):
-    im = imresize(images[i], [32,32], interp='bilinear', mode=None )
-    # used when putting into an array
-    #images_resized.append(im)
-    # saving to disk
-    imsave(dir+'resized/'+new_file_names[i], im)
-
-
-quit()
 
 
 

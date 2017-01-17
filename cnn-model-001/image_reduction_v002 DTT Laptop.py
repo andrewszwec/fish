@@ -8,7 +8,10 @@ import sys
 
 # Automated version
 # dir = sys.argv
-dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/DOL/"
+# MAC
+#dir = r"/Users/andrew/Documents/kaggle/fish/cnn-model-001/data/DOL/"
+# DTT UBUNTU
+dir = r"/home/andrew/Documents/kaggle/fish/cnn-model-001/data/ALB/"
 
 # this step should really be batched
 def load_images_from_folder(folder):
